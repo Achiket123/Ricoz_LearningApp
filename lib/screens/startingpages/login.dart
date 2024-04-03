@@ -141,14 +141,7 @@ class _LoginState extends State<Login> {
                       ),
                     ],
                   ),
-                  const SizedBox(height: 10),
-                 
-                  const SizedBox(height: 10),
-                 
-
-                  const SizedBox(height: 40),
-
-                 
+                  const SizedBox(height: 60),
                   TextButton(
                     onPressed: () {
                      
