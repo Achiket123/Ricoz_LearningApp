@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:learningapp/screens/startingpages/signin.dart';
 import 'package:learningapp/screens/startingpages/onboarding.dart';
-import 'package:learningapp/screens/startingpages/home.dart';
+//import 'package:learningapp/screens/startingpages/home.dart';
 import 'package:learningapp/screens/startingpages/otpage.dart';
 import 'package:learningapp/screens/startingpages/policy.dart';
 
@@ -107,7 +107,7 @@ class _LoginState extends State<Login> {
                     onPressed: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => HomePage()),
+                        MaterialPageRoute(builder: (context) => OTPPage()),
                       );
                     },
                     style: ElevatedButton.styleFrom(
@@ -142,47 +142,9 @@ class _LoginState extends State<Login> {
                     ],
                   ),
                   const SizedBox(height: 10),
-                  Container(
-                    width: 400,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Expanded(
-                          child: Divider(
-                            color: Colors.grey[300],
-                            thickness: 1,
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                          child: Text(
-                            'OR',
-                            style: TextStyle(
-                                fontSize: 14, color: Colors.grey[500]),
-                          ),
-                        ),
-                        Expanded(
-                          child: Divider(
-                            color: Colors.grey[300],
-                            thickness: 1,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
+                 
                   const SizedBox(height: 10),
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => OTPPage()),
-                      );
-                    },
-                    child: Text(
-                      'Enter Parental Code',
-                      style: TextStyle(fontSize: 16, color: Colors.grey[500]),
-                    ),
-                  ),
+                 
 
                   const SizedBox(height: 40),
 
