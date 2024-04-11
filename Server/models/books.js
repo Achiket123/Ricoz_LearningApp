@@ -18,10 +18,7 @@ const bookSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  year: {
-    type: Number,
-    required: true,
-  },
+  
 });
 
 // Create a model based on the schema

@@ -3,6 +3,7 @@ const app = express();
 const userRoutes = require("./Router/userRouter");
 const database = require("./config/database");
 const cors = require("cors");
+const common = require("./Router/route");
 
 // Setting up port number
 const PORT = 8000;
@@ -22,6 +23,7 @@ app.use(
 
 // Setting up routes
 app.use("/api/v1/auth", userRoutes);
+app.use("/api/v1", common);
 
 // Testing the server
 app.get("/", (req, res) => {
