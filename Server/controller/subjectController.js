@@ -6,7 +6,7 @@ const getSubjectsByClass = async (req, res) => {
     const { user_class } = req.user;
 
     const subjects = await Subject.find({ class: user_class });
-    console.log(subjects);
+    console.log(user_class);
 
     res.json({ subjects });
   } catch (err) {
