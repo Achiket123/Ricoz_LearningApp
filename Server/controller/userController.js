@@ -7,7 +7,7 @@ exports.sendOtp = async (req, res) => {
   try {
     const { phone_number } = req.body;
 
-    let otp = otpgenerator.generate(6, {
+    let otp = otpgenerator.generate(5, {
       upperCaseAlphabets: false,
       lowerCaseAlphabets: false,
       specialChars: false,
@@ -68,7 +68,7 @@ exports.signup = async (req, res) => {
 exports.login = async (req, res) => {
   try {
     const { phone_number, otp } = req.body;
-
+    console.log(req.body);
     if (!phone_number) {
       return res.status(400).json({
         success: false,

@@ -1,9 +1,25 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:learningapp/screens/startingpages/home.dart';
-//import 'package:learningapp/homepage2.dart';
 import 'package:learningapp/features/bottomnavigation.dart';
+import 'package:learningapp/apisdart/registration_api.dart';
 
 class CourseSelectionPage extends StatefulWidget {
+  final String name;
+  final String dob;
+  final String email;
+  final String selectedClass;
+  final String location;
+
+  CourseSelectionPage({
+    required this.name,
+    required this.dob,
+    required this.email,
+    required this.selectedClass,
+    required this.location,
+  });
+
   @override
   _CourseSelectionPageState createState() => _CourseSelectionPageState();
 }
@@ -85,7 +101,7 @@ class _CourseSelectionPageState extends State<CourseSelectionPage> {
                     Center(
                       child: ElevatedButton(
                         onPressed:
-                            _isContinueEnabled ? _navigateToHomePage2 : null,
+                            _isContinueEnabled ? _sendDataToServer : null,
                         style: ElevatedButton.styleFrom(
                           primary: _isContinueEnabled
                               ? Color(0xFF7D7CC9)
@@ -119,13 +135,6 @@ class _CourseSelectionPageState extends State<CourseSelectionPage> {
     Navigator.pushReplacement(
       context,
       MaterialPageRoute(builder: (context) => HomePage()),
-    );
-  }
-
-  void _navigateToHomePage2() {
-    Navigator.pushReplacement(
-      context,
-      MaterialPageRoute(builder: (context) => Navigation()),
     );
   }
 
@@ -253,6 +262,34 @@ class _CourseSelectionPageState extends State<CourseSelectionPage> {
       });
     }
   }
+
+  void _sendDataToServer() async {
+    await RegistrationApi.registerUser(
+      name: widget.name,
+      dateOfBirth: widget.dob,
+      email: widget.email,
+      selectedClass: widget.selectedClass,
+      location: widget.location,
+      courseType: _courseType!,
+      tuitionMode: _tuitionMode!,
+      medium: _medium!,
+    ).then((value) {
+      if (value) {
+      _navigateToHomePage2(context);
+    } else {
+      log('Error: Failed to send data to server');
+    }
+    });
+
+  
+  }
+}
+
+void _navigateToHomePage2(BuildContext context) {
+  Navigator.pushReplacement(
+    context,
+    MaterialPageRoute(builder: (context) => const Navigation()),
+  );
 }
 
 class Section extends StatelessWidget {
