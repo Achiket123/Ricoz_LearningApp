@@ -1,11 +1,8 @@
 const mongoose = require('mongoose');
 
-const bookSchema = new mongoose.Schema({
-  title: {
-    type: String,
-    required: true,
-  },
-  author: {
+// Define a schema for subjects
+const subjectSchema = new mongoose.Schema({
+  name: {
     type: String,
     required: true,
   },
@@ -14,14 +11,9 @@ const bookSchema = new mongoose.Schema({
     required: true,
     enum: ['Class 1', 'Class 2', 'Class 3', 'Class 4', 'Class 5', 'Class 6', 'Class 7', 'Class 8', 'Class 9', 'Class 10', 'Class 11', 'Class 12'],
   },
-  publisher: {
-    type: String,
-    required: true,
-  },
-  
 });
 
 // Create a model based on the schema
-const Book = mongoose.model('Book', bookSchema);
+const Subject = mongoose.model('Subject', subjectSchema);
 
-module.exports = Book;
+module.exports = Subject;

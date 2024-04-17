@@ -32,6 +32,15 @@ exports.signup = async (req, res) => {
   try {
     const { phone_number, otp } = req.body;
 
+    //If user found
+    const existUser = await User.findOne({ PhoneNumber: phone_number });
+
+    if (existUser) {
+      return res.json({
+        success: false,
+        Message: "User already exist",
+      });
+    }
     const response = await OTP.find({ phone_number })
       .sort({ createdAt: -1 })
       .limit(1);
@@ -107,7 +116,11 @@ exports.login = async (req, res) => {
     }
 
     const token = jwt.sign(
-      { phone_number: user.PhoneNumber, id: user._id },
+      {
+        phone_number: user.PhoneNumber,
+        id: user._id,
+        user_class: user.selectClass,
+      },
       "Anurag",
       {
         expiresIn: "24h",
@@ -133,12 +146,20 @@ exports.login = async (req, res) => {
 };
 
 exports.updateProfile = async (req, res) => {
-try {
+  try {
     const { id } = req.user;
-  
-    const { name, email, DOB, courseType, Mode, selectClass, location, Medium } =
-      req.body;
-  
+
+    const {
+      name,
+      email,
+      DOB,
+      courseType,
+      Mode,
+      selectClass,
+      location,
+      Medium,
+    } = req.body;
+
     const user = await User.findByIdAndUpdate(
       { _id: id },
       {
@@ -153,15 +174,15 @@ try {
       },
       { new: true }
     );
-  
+
     res.status(200).json({
       success: true,
       user,
     });
-} catch (error) {
-  res.status(400).json({
-    success: false,
-    message: `Error in server${error}`,
-  });
-}
+  } catch (error) {
+    res.status(400).json({
+      success: false,
+      message: `Error in server${error}`,
+    });
+  }
 };
