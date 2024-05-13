@@ -1,7 +1,15 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:learningapp/screens/startingpages/onboarding.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-void main() => runApp(MyApp());
+late SharedPreferences? prefs;
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  prefs = await SharedPreferences.getInstance();
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   @override
@@ -14,4 +22,8 @@ class MyApp extends StatelessWidget {
       home: Onboarding(),
     );
   }
+}
+
+void customPrint(message, val) {
+  log("$message :: $val");
 }

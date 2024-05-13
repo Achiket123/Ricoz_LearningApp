@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:learningapp/apisdart/otp_api.dart';
 import 'package:learningapp/screens/startingpages/onboarding.dart';
-import 'package:learningapp/screens/startingpages/home.dart';
 import 'package:learningapp/screens/startingpages/otpage.dart';
 import 'package:learningapp/screens/startingpages/policy.dart';
 import 'package:learningapp/screens/startingpages/login.dart';
+
 class SignInPage extends StatefulWidget {
   @override
   _SignInPageState createState() => _SignInPageState();
 }
 
 class _SignInPageState extends State<SignInPage> {
-  TextEditingController _phoneNumberController = TextEditingController();
+  final TextEditingController _phoneNumberController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +31,7 @@ class _SignInPageState extends State<SignInPage> {
                 },
                 child: Row(
                   children: [
-                     SizedBox(height: 100),
+                    SizedBox(height: 100),
                     Container(
                       width: 50,
                       height: 50,
@@ -59,10 +60,9 @@ class _SignInPageState extends State<SignInPage> {
                   ),
                   SizedBox(height: 20),
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal:24.0),
+                    padding: const EdgeInsets.symmetric(horizontal: 24.0),
                     child: Container(
                       width: 400,
-                      //padding: EdgeInsets.symmetric(horizontal: 10),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
                         color: Colors.grey[300],
@@ -80,7 +80,10 @@ class _SignInPageState extends State<SignInPage> {
                             child: Center(
                               child: Text(
                                 '+91',
-                                style: TextStyle(fontSize: 18, color: Colors.white),
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  color: Colors.white,
+                                ),
                               ),
                             ),
                           ),
@@ -101,11 +104,38 @@ class _SignInPageState extends State<SignInPage> {
                   ),
                   SizedBox(height: 20),
                   ElevatedButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => OTPPage()),
-                      );
+                    onPressed: () async {
+                      await OtpApi.sendOTP(_phoneNumberController.text)
+                          .then((value) {
+                        if (value) {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => OTPPage(
+                                      phoneNumber: _phoneNumberController.text,
+                                      isSignup: true,
+                                    )),
+                          );
+                        } else {
+                          showDialog(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return AlertDialog(
+                                title: const Text('Signup Error'),
+                                content: Text('Failed to signup'),
+                                actions: [
+                                  TextButton(
+                                    onPressed: () {
+                                      Navigator.pop(context);
+                                    },
+                                    child: const Text('OK'),
+                                  )
+                                ],
+                              );
+                            },
+                          );
+                        }
+                      });
                     },
                     style: ElevatedButton.styleFrom(
                       primary: Colors.pink,
@@ -127,9 +157,9 @@ class _SignInPageState extends State<SignInPage> {
                       GestureDetector(
                         onTap: () {
                           Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => Login()));
+                            context,
+                            MaterialPageRoute(builder: (context) => Login()),
+                          );
                         },
                         child: Text(
                           'Log in',
@@ -138,13 +168,12 @@ class _SignInPageState extends State<SignInPage> {
                       ),
                     ],
                   ),
-                  SizedBox(height: 40),                  
+                  SizedBox(height: 40),
                   TextButton(
                     onPressed: () {
-                      
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => PolicyPage()), 
+                        MaterialPageRoute(builder: (context) => PolicyPage()),
                       );
                     },
                     child: Text(
