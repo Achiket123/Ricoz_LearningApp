@@ -4,9 +4,7 @@ const Subject = require("../models/subject");
 const getSubjectsByClass = async (req, res) => {
   try {
     const { user_class } = req.user;
-
     const subjects = await Subject.find({ class: user_class });
-    console.log(user_class);
 
     res.json({ subjects });
   } catch (err) {
