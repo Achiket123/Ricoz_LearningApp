@@ -38,10 +38,12 @@ dependencies:
   carousel_slider: ^4.2.1
   flutter_rating_bar: ^4.0.1
   upi_india: ^3.0.1
-  shared_preferences: ^2.2.2
+  shared_preferences: ^2.2.3
   camera: ^0.10.5+9
   image_picker: ^1.0.7
   url_launcher: ^6.2.3
+  riverpod: ^2.5.1
+  http: ^1.2.0
   # google_fonts: ^2.2.0
 
 dev_dependencies:

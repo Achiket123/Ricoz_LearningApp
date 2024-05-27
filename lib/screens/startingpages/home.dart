@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:learningapp/screens/startingpages/signin.dart';
 import 'package:learningapp/screens/startingpages/courselection.dart';
 
 class HomePage extends StatefulWidget {
@@ -37,9 +36,6 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       body: ListView(
         padding: EdgeInsets.zero,
-        // physics: const AlwaysScrollableScrollPhysics(
-        //   parent: BouncingScrollPhysics(),
-        // ),
         children: [
           Stack(children: [
             Image.asset(
@@ -116,7 +112,6 @@ class _HomePageState extends State<HomePage> {
       margin: const EdgeInsets.symmetric(vertical: 8),
       padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 10),
       decoration: BoxDecoration(
-        // border: Border.all(color: Colors.grey),
         color: Color(0xFFF1F1F1),
         borderRadius: BorderRadius.circular(5),
       ),
@@ -160,13 +155,10 @@ class _HomePageState extends State<HomePage> {
       children: [
         Expanded(
           child: Container(
-            height: 55, // Adjusted height to match other text fields
+            height: 55,
             margin: const EdgeInsets.symmetric(vertical: 8),
             padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 2),
             decoration: BoxDecoration(
-              // border: Border.all(
-              //   color: isNextButtonEnabled ? const Color(0xFF7D7CC9) : Colors.grey,
-              // ),
               color: Color(0xFFF1F1F1),
               borderRadius: BorderRadius.circular(5),
             ),
@@ -257,7 +249,13 @@ class _HomePageState extends State<HomePage> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => CourseSelectionPage(),
+                  builder: (context) => CourseSelectionPage(
+                    name: nameController.text,
+                    dob: dateOfBirthController.text,
+                    email: emailController.text,
+                    selectedClass: selectedClass!,
+                    location: locationController.text,
+                  ),
                 ),
               );
             }

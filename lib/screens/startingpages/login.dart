@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:learningapp/apisdart/otp_api.dart';
 import 'package:learningapp/screens/startingpages/signin.dart';
 import 'package:learningapp/screens/startingpages/onboarding.dart';
 //import 'package:learningapp/screens/startingpages/home.dart';
 import 'package:learningapp/screens/startingpages/otpage.dart';
 import 'package:learningapp/screens/startingpages/policy.dart';
+//import 'package:learningapp/apisdart/login_api.dart';
+//import 'package:http/http.dart' as http;
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -13,7 +16,9 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
-  TextEditingController _phoneNumberController = TextEditingController();
+  final TextEditingController _phoneNumberController = TextEditingController();
+  // final LoginApi _loginApi = LoginApi(http.Client(),
+  //     baseUrl: 'http://localhost:8000/api/v1/auth/login');
 
   @override
   Widget build(BuildContext context) {
@@ -62,7 +67,7 @@ class _LoginState extends State<Login> {
                   ),
                   const SizedBox(height: 20),
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal:24.0),
+                    padding: const EdgeInsets.symmetric(horizontal: 24.0),
                     child: Container(
                       width: 400,
                       //padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -82,8 +87,8 @@ class _LoginState extends State<Login> {
                             child: const Center(
                               child: Text(
                                 '+91',
-                                style:
-                                    TextStyle(fontSize: 18, color: Colors.white),
+                                style: TextStyle(
+                                    fontSize: 18, color: Colors.white),
                               ),
                             ),
                           ),
@@ -104,11 +109,53 @@ class _LoginState extends State<Login> {
                   ),
                   const SizedBox(height: 20),
                   ElevatedButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => OTPPage()),
-                      );
+                    onPressed: () async {
+                      // _loginApi.login(_phoneNumberController.text).then((_) {
+                      //   Navigator.push(
+                      //     context,
+                      //     MaterialPageRoute(builder: (context) => OTPPage()),
+                      //   );
+                      // }).catchError((error) {
+                      //   showDialog(
+                      //       context: context,
+                      //       builder: (BuildContext context) {
+                      //         return AlertDialog(
+                      //           title: const Text('Login Error'),
+                      //           content: Text('Failed to login:$error'),
+                      //           actions: [
+                      //             TextButton(onPressed: (){
+                      //               Navigator.pop(context);
+                      //             }, child: const Text('OK'))
+                      //           ],
+                      //         );
+                      //       });
+                      // });
+
+                      await OtpApi.sendOTP(_phoneNumberController.text)
+                          .then((value) {
+                        if (value) {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => OTPPage(phoneNumber:_phoneNumberController.text,isSignup: false,)),
+                          );
+                        } else {
+                          showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return AlertDialog(
+                                  title: const Text('Login Error'),
+                                  content: Text('Failed to login'),
+                                  actions: [
+                                    TextButton(
+                                        onPressed: () {
+                                          Navigator.pop(context);
+                                        },
+                                        child: const Text('OK'))
+                                  ],
+                                );
+                              });
+                        }
+                      });
                     },
                     style: ElevatedButton.styleFrom(
                       primary: Colors.pink,
@@ -144,12 +191,9 @@ class _LoginState extends State<Login> {
                   const SizedBox(height: 60),
                   TextButton(
                     onPressed: () {
-                     
                       Navigator.push(
                         context,
-                        MaterialPageRoute(
-                            builder: (context) =>
-                                PolicyPage()),
+                        MaterialPageRoute(builder: (context) => PolicyPage()),
                       );
                     },
                     child: const Text(

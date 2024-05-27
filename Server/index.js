@@ -32,6 +32,13 @@ app.get("/", (req, res) => {
     message: "Your server is up and running ...",
   });
 });
+// app.post("/", (req, res) => {
+//   console.log(req.body);
+//   return res.json({
+//     success: true,
+//     message: "Your server is up and running ...",
+//   });
+// });
 
 // Listening to the server
 app.listen(PORT, () => {
