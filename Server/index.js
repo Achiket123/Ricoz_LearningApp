@@ -28,7 +28,6 @@ app.use("/api/v1/auth", userRoutes);
 app.use("/api/v1", common);
 app.use('/api/v1', rating)
 
-
 // Testing the server
 app.get("/", (req, res) => {
   return res.json({
