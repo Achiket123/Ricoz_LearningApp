@@ -1,15 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:learningapp/features/rateusbar.dart';
+//import 'package:learningapp/features/rateusbar.dart';
+import 'package:learningapp/apisdart/homepageapis/rateusbar_api.dart';
 import 'package:learningapp/features/recentlearnfeature.dart';
-import 'package:learningapp/features/sidedrawer.dart';
+import 'package:learningapp/features/sidedrawer.dart';  
 import 'package:learningapp/features/quizfeature.dart';
-import 'package:learningapp/features/searchbar1.dart';
+//import 'package:learningapp/features/searchbar1.dart';
+import 'package:learningapp/apisdart/homepageapis/subjectcarouselslider_api.dart';
+import 'package:learningapp/apisdart/homepageapis/searchbar_api.dart';
 import 'package:learningapp/features/bottomcontainer.dart';
 import 'package:learningapp/features/buildtitle.dart';
 import 'package:learningapp/screens/homepages/notifypages/notify1.dart';
 import 'package:learningapp/screens/compagesandmaterialpages/viewmore.dart';
-import 'package:learningapp/features/videocarousel.dart';
+//import 'package:learningapp/features/videocarousel.dart';
+import 'package:learningapp/apisdart/homepageapis/videocarousesliderapi.dart';
 class HomePage2 extends StatefulWidget {
   @override
   _HomePage2State createState() => _HomePage2State();
@@ -58,11 +62,14 @@ class _HomePage2State extends State<HomePage2> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  buildSearchBar(),
+                  BookSearch(),
+                  //SearchBar(),
+                  //buildSearchBar(),
                   SizedBox(height: 10),
                   buildSectionTitle("Suggested Subject"),
                   SizedBox(height: 10),
-                  _buildCarousel(),
+                  SubjectCarousel(),
+                 //  _buildCarousel(),
                   buildBottomContainer(context),
                   SizedBox(height: 10),
                   buildSectionTitle("Recently Learned"),
@@ -89,11 +96,13 @@ class _HomePage2State extends State<HomePage2> {
                     ],
                   ),
                   SizedBox(height: 10),
-                  buildVideoCarousel(),
+                 // buildVideoCarousel(),
+                  VideoCarousel(),
                   SizedBox(height: 30),
                   buildSectionTitle("Rate us"),
                   SizedBox(height: 8.0),
-                  buildRatingSection(),
+                  // buildRatingSection(),
+                  BuildRatingSection(),
                   SizedBox(height: 30),
                   buildSectionTitle("Quiz"),
                   SizedBox(height: 8.0),
