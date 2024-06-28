@@ -261,7 +261,7 @@ class _Profilepage1State extends State<Profilepage1> {
                                 0; // modify this part so that u can fetch it's value from backend, not subscribe value 0 else 1
                           },
                           style: ElevatedButton.styleFrom(
-                            primary: Color(0xFF7D7CC9),
+                            backgroundColor: Color(0xFF7D7CC9),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(0),
                             ),
@@ -287,7 +287,7 @@ class _Profilepage1State extends State<Profilepage1> {
                             }
                           },
                           style: ElevatedButton.styleFrom(
-                            primary: Color(0xFF7D7CC9),
+                            backgroundColor: Color(0xFF7D7CC9),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(0),
                             ),

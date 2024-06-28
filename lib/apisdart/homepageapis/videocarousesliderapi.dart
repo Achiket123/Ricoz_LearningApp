@@ -6,6 +6,7 @@ import 'package:learningapp/database/databaseapi.dart';
 import 'dart:convert';
 import 'package:learningapp/models/homepage/videocarouselmodel.dart';
 import 'package:learningapp/apisdart/otp_api.dart';
+
 class VideoCarousel extends StatefulWidget {
   @override
   _VideoCarouselState createState() => _VideoCarouselState();
@@ -30,9 +31,10 @@ class _VideoCarouselState extends State<VideoCarousel> {
 
   Future<void> fetchVideos() async {
     final response = await http.get(
-      Uri.parse(DatabaseApi.Gethistory), 
+      Uri.parse(DatabaseApi.Gethistory),
       headers: {
-        'Authorization': 'Bearer ${OtpApi.token}', // Replace with your auth token if needed
+        'Authorization':
+            'Bearer ${OtpApi.token}', // Replace with your auth token if needed
       },
     );
     if (response.statusCode == 200) {
@@ -45,15 +47,17 @@ class _VideoCarouselState extends State<VideoCarousel> {
       setState(() {
         isLoading = false;
       });
-      throw Exception('Failed to load videos');
+      // // Exception('Failed to load videos');
     }
   }
+
   Future<void> addWatchHistory(String videoId) async {
     final response = await http.post(
       Uri.parse(DatabaseApi.Addwatchhistory),
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${OtpApi.token}', // Replace with your auth token if needed
+        'Authorization':
+            'Bearer ${OtpApi.token}', // Replace with your auth token if needed
       },
       body: json.encode({'videoId': videoId}),
     );
@@ -61,9 +65,10 @@ class _VideoCarouselState extends State<VideoCarousel> {
     if (response.statusCode == 201) {
       log('Watch history added successfully');
     } else {
-      throw Exception('Failed to add watch history');
+      // Exception('Failed to add watch history');
     }
   }
+
   @override
   Widget build(BuildContext context) {
     return isLoading
@@ -81,10 +86,12 @@ class _VideoCarouselState extends State<VideoCarousel> {
                   )
                 : List.generate(
                     videoImages.length,
-                    (index) => _buildVideoCarouselItem(videoImages[index], false),
+                    (index) =>
+                        _buildVideoCarouselItem(videoImages[index], false),
                   ),
           );
   }
+
   Widget _buildVideoCarouselItem(dynamic item, bool isDataAvailable) {
     return GestureDetector(
       onTap: () {
@@ -106,7 +113,7 @@ class _VideoCarouselState extends State<VideoCarousel> {
           borderRadius: BorderRadius.circular(8.0),
           child: isDataAvailable
               ? Image.network(
-                  'https://yourapiurl.com/videos/${(item as Video).videoId}/thumbnail', // replace this with data models present in 
+                  'https://yourapiurl.com/videos/${(item as Video).videoId}/thumbnail', // replace this with data models present in
                   fit: BoxFit.cover,
                 )
               : Image.asset(

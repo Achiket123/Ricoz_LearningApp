@@ -44,7 +44,7 @@ class _SubjectCarouselState extends State<SubjectCarousel> {
         subjects = json.decode(response.body);
       });
     } else {
-      throw Exception('Failed to load subjects');
+      // // Exception('Failed to load subjects');
     }
   }
 

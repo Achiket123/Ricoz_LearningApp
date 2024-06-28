@@ -76,7 +76,7 @@ class SideDrawer extends StatelessWidget {
         _showLogoutDialog(context);
       },
       style: ElevatedButton.styleFrom(
-        primary: Colors.white,
+        backgroundColor: Colors.white,
         padding: EdgeInsets.all(16),
       ),
       child: Row(

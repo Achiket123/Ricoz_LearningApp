@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:learningapp/apisdart/otp_api.dart';
 import 'package:learningapp/screens/startingpages/signin.dart';
@@ -130,36 +132,40 @@ class _LoginState extends State<Login> {
                       //         );
                       //       });
                       // });
-
+                      print('message');
                       await OtpApi.sendOTP(_phoneNumberController.text)
                           .then((value) {
-                        if (value) {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => OTPPage(phoneNumber:_phoneNumberController.text,isSignup: false,)),
-                          );
-                        } else {
-                          showDialog(
-                              context: context,
-                              builder: (BuildContext context) {
-                                return AlertDialog(
-                                  title: const Text('Login Error'),
-                                  content: Text('Failed to login'),
-                                  actions: [
-                                    TextButton(
-                                        onPressed: () {
-                                          Navigator.pop(context);
-                                        },
-                                        child: const Text('OK'))
-                                  ],
-                                );
-                              });
-                        }
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => OTPPage(
+                                    phoneNumber: _phoneNumberController.text,
+                                    isSignup: false,
+                                  )),
+                        );
+
+                        // else {
+                        //   showDialog(
+                        //       context: context,
+                        //       builder: (BuildContext context) {
+                        //         return AlertDialog(
+                        //           title: const Text('Login Error'),
+                        //           content: Text('Failed to login'),
+                        //           actions: [
+                        //             TextButton(
+                        //                 onPressed: () {
+                        //                   Navigator.pop(context);
+                        //                 },
+                        //                 child: const Text('OK'))
+                        //           ],
+                        //         );
+                        //       });
+                        // }
                       });
                     },
                     style: ElevatedButton.styleFrom(
-                      primary: Colors.pink,
-                      onPrimary: Colors.white,
+                      foregroundColor: Colors.white,
+                      backgroundColor: Colors.pink,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(5),
                       ),

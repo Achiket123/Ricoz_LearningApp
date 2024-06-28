@@ -189,7 +189,7 @@ class _TestPage2State extends State<TestPage2> {
                           navigateToPage(index, i);
                         },
                         style: ElevatedButton.styleFrom(
-                          primary:  Color(0xFF7D7CC9) ,
+                          backgroundColor: Color(0xFF7D7CC9) ,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(8.0),
                           ),

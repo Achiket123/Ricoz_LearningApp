@@ -8,7 +8,7 @@ const rating = require('./Router/rateUsRouter')
 
 
 // Setting up port number
-const PORT = 8000;
+const PORT =process.env.PORT || 8000;
 
 // Connecting to database
 database.connect();

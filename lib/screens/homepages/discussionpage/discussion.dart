@@ -110,7 +110,7 @@ class _DiscussionPageState extends State<DiscussionPage> {
                         addComment();
                       },
                       style: ElevatedButton.styleFrom(
-                        primary: Color(0xFF7D7CC9),
+                        backgroundColor: Color(0xFF7D7CC9),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10.0),
                         ),

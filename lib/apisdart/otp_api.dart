@@ -15,14 +15,20 @@ class OtpApi {
         body: json.encode({'phone_number': phoneNumber}),
         headers: {'Content-Type': 'application/json'},
       );
-      log("url :: ${DatabaseApi.sendOtp}");
+      print("url :: ${DatabaseApi.sendOtp}");
       if (response.statusCode == 200) {
         return true;
       } else {
-        throw Exception('Failed to send OTP: ${response.body}');
+        log(response.statusCode.toString());
+        return false;
+
+        // Exception('Failed to send OTP: ${response.body}');
       }
     } catch (e) {
-      throw Exception('Error sending OTP: $e');
+      log(e.toString());
+      return false;
+
+      // Exception('Error sending OTP: $e');
     }
   }
 
@@ -33,10 +39,11 @@ class OtpApi {
           body: json.encode({'phone_number': phoneNumber, 'otp': otp}),
           headers: {"content-type": "application/json"});
       if (response.statusCode == 200) {
-        customPrint("message", "");
+        customPrint("message", "${response.body}");
 
         final Map<String, dynamic> responseData = json.decode(response.body);
         token = responseData['token'];
+
         await saveTokenLocal(responseData['token']);
         return true;
       } else {
@@ -44,7 +51,8 @@ class OtpApi {
         return false;
       }
     } catch (e) {
-      throw Exception('Error verifying OTP: $e');
+      log(e.toString());
+      return false;
     }
   }
 

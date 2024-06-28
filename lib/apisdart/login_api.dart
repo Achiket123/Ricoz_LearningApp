@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:learningapp/main.dart';
+
 class LoginApi {
   final http.Client httpClient;
   final String baseUrl;
@@ -19,7 +20,9 @@ class LoginApi {
       customPrint("login", "Login successful");
       return true;
     } else {
-      throw Exception('Failed to login: ${response.body}');
+      return false;
+
+      // Exception('Failed to login: ${response.body}');
     }
   }
 }

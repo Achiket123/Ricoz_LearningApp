@@ -1,6 +1,8 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:learningapp/screens/homepages/homepage2.dart';
+import 'package:learningapp/screens/startingpages/home.dart';
 import 'package:learningapp/screens/startingpages/onboarding.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -19,7 +21,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         fontFamily: 'PlusJakartaSans',
       ),
-      home: Onboarding(),
+      home: Onboarding  (),
     );
   }
 }

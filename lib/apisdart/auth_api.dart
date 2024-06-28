@@ -22,7 +22,8 @@ class AuthApi {
       customPrint("login", "Login successful");
       return true;
     } else {
-      throw Exception('Failed to login: ${response.body}');
+      return false;
+      // Exception('Failed to login: ${response.body}');
     }
   }
 
@@ -38,7 +39,9 @@ class AuthApi {
       customPrint("signup", "Signup successful");
       return true;
     } else {
-      throw Exception('Failed to signup: ${response.body}');
+      return false;
+
+      // Exception('Failed to signup: ${response.body}');
     }
   }
 
@@ -55,7 +58,9 @@ class AuthApi {
       customPrint("otp", "verified");
       return true;
     } else {
-      throw Exception('Failed to verify OTP: ${response.body}');
+      return false;
+
+      // Exception('Failed to verify OTP: ${response.body}');
     }
   }
 }

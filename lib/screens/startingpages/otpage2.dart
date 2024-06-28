@@ -107,8 +107,7 @@ class _OTPPageState extends State<OTPPage> {
                       );
                     },
                     style: ElevatedButton.styleFrom(
-                      primary: Colors.pink,
-                      onPrimary: Colors.white,
+                      foregroundColor: Colors.white, backgroundColor: Colors.pink,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(5),
                       ),

@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 exports.connect = async () => {
   await mongoose
-    .connect("mongodb://127.0.0.1:27017/Ricoz_LearningApp")
+    .connect("mongodb+srv://nolafis395:8n1SPzMBaf3zkZtW@cluster0.yflmhey.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
     .then(console.log(`DB Connection Success`))
     .catch((err) => {
       console.log(`DB Connection Failed`);

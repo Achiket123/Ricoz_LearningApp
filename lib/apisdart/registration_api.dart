@@ -1,4 +1,6 @@
 //import 'dart:developer';
+import 'dart:developer';
+
 import 'package:learningapp/apisdart/otp_api.dart';
 import 'package:learningapp/database/databaseapi.dart';
 import 'package:http/http.dart' as http;
@@ -38,7 +40,7 @@ class RegistrationApi {
           "Authorization": "Bearer ${OtpApi.token}"
         },
       );
-
+      log(response.statusCode.toString());
       if (response.statusCode == 200) {
         customPrint("register user message", response.body);
         return true;

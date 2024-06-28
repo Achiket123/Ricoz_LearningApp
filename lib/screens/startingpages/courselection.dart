@@ -103,7 +103,7 @@ class _CourseSelectionPageState extends State<CourseSelectionPage> {
                         onPressed:
                             _isContinueEnabled ? _sendDataToServer : null,
                         style: ElevatedButton.styleFrom(
-                          primary: _isContinueEnabled
+                          backgroundColor: _isContinueEnabled
                               ? Color(0xFF7D7CC9)
                               : Colors.grey,
                           textStyle: TextStyle(
@@ -150,7 +150,8 @@ class _CourseSelectionPageState extends State<CourseSelectionPage> {
           });
         },
         style: ElevatedButton.styleFrom(
-          primary: _courseType == type ? Color(0xFF7D7CC9) : Color(0xFFF1F1F1),
+          backgroundColor:
+              _courseType == type ? Color(0xFF7D7CC9) : Color(0xFFF1F1F1),
           textStyle: TextStyle(
             color: _courseType == type ? Colors.white : Colors.black,
             fontSize: 10.0,
@@ -181,7 +182,8 @@ class _CourseSelectionPageState extends State<CourseSelectionPage> {
           });
         },
         style: ElevatedButton.styleFrom(
-          primary: _tuitionMode == mode ? Color(0xFF7D7CC9) : Color(0xFFF1F1F1),
+          backgroundColor:
+              _tuitionMode == mode ? Color(0xFF7D7CC9) : Color(0xFFF1F1F1),
           textStyle: TextStyle(
             color: _tuitionMode == mode ? Colors.white : Colors.black,
             fontSize: 10.0,
@@ -212,7 +214,8 @@ class _CourseSelectionPageState extends State<CourseSelectionPage> {
           });
         },
         style: ElevatedButton.styleFrom(
-          primary: _medium == medium ? Color(0xFF7D7CC9) : Color(0xFFF1F1F1),
+          backgroundColor:
+              _medium == medium ? Color(0xFF7D7CC9) : Color(0xFFF1F1F1),
           textStyle: TextStyle(
             color: _medium == medium ? Colors.white : Colors.black,
             fontSize: 10.0,
@@ -240,7 +243,7 @@ class _CourseSelectionPageState extends State<CourseSelectionPage> {
         child: ElevatedButton(
           onPressed: null,
           style: ElevatedButton.styleFrom(
-            primary: _tuitionMode == mode
+            backgroundColor: _tuitionMode == mode
                 ? Color.fromARGB(255, 255, 254, 255)
                 : Color.fromARGB(255, 255, 254, 255),
             textStyle: TextStyle(
@@ -274,14 +277,13 @@ class _CourseSelectionPageState extends State<CourseSelectionPage> {
       tuitionMode: _tuitionMode!,
       medium: _medium!,
     ).then((value) {
+      log(value.toString());
       if (value) {
-      _navigateToHomePage2(context);
-    } else {
-      log('Error: Failed to send data to server');
-    }
+        _navigateToHomePage2(context);
+      } else {
+        log('Error: Failed to send data to server');
+      }
     });
-
-  
   }
 }
 

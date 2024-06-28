@@ -1,7 +1,8 @@
 class DatabaseApi {
-  static const baseUrl = "http://192.168.29.96:8000/api/v1";
+  static const baseUrl = "https://guruarc-backend.vercel.app/api/v1";
+  // static const baseUrl = "http://192.168.0.106:8000/api/v1";
   static const auth = "$baseUrl/auth";
-  static const login = "$auth/login/";
+  static const login = "$auth/login";
   static const signUp = "$auth/signup";
   static const sendOtp = "$auth/sendotp";
   static const verifyOtp = "$auth/verifyotp";
@@ -12,5 +13,5 @@ class DatabaseApi {
   //static const Addwatchhistory- localhost/api/v1/addWatchHistory;
   static const Gethistory = "$auth/getUserHistory";
   static const Addwatchhistory = "$auth/addWatchHistory";
-  static const giveRating="$auth/give/rating";
+  static const giveRating = "$auth/give/rating";
 }

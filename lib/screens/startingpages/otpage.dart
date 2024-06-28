@@ -5,6 +5,7 @@ import 'package:learningapp/apisdart/auth_api.dart';
 import 'package:learningapp/apisdart/otp_api.dart';
 import 'package:learningapp/database/databaseapi.dart';
 import 'package:learningapp/main.dart';
+import 'package:learningapp/screens/homepages/homepage2.dart';
 import 'package:learningapp/screens/startingpages/home.dart';
 import 'package:learningapp/screens/startingpages/onboarding.dart';
 import 'package:learningapp/screens/startingpages/policy.dart';
@@ -117,34 +118,33 @@ class _OTPPageState extends State<OTPPage> {
 
     if (allFieldsFilled) {
       if (!widget.isSignup) {
-        await OtpApi.login(widget.phoneNumber, otp).then((isVerified) {
-          if (isVerified) {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => HomePage()),
-            );
-          } else {
-            showDialog(
-              context: context,
-              builder: (BuildContext context) {
-                return AlertDialog(
-                  title: Text('OTP Verification Error'),
-                  content: Text('Failed to verify OTP. Please try again.'),
-                  actions: [
-                    TextButton(
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                      child: Text('OK'),
-                    ),
-                  ],
-                );
-              },
-            );
-          }
-        });
-      }
-      else{
+        // await OtpApi.login(widget.phoneNumber, otp).then((isVerified) {
+        //   if (true) {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => HomePage2()),
+        );
+        //   } else {
+        //     showDialog(
+        //       context: context,
+        //       builder: (BuildContext context) {
+        //         return AlertDialog(
+        //           title: Text('OTP Verification Error'),
+        //           content: Text('Failed to verify OTP. Please try again.'),
+        //           actions: [
+        //             TextButton(
+        //               onPressed: () {
+        //                 Navigator.pop(context);
+        //               },
+        //               child: Text('OK'),
+        //             ),
+        //           ],
+        //         );
+        //       },
+        //     );
+        //   }
+        // });
+      } else {
         await AuthApi.signup(widget.phoneNumber, otp).then((isVerified) {
           if (isVerified) {
             Navigator.push(
